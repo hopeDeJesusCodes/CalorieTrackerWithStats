@@ -5,5 +5,5 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.Wishlist" parent="Base.Theme.Wishlist" />
+    <style name="Theme.CalorieTracking" parent="Base.Theme.Wishlist" />
 </resources>
