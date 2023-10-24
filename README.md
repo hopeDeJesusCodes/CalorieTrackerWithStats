@@ -1,49 +1,46 @@
-# Android Project 5 - *CalorieTracking*
+# Android Project 6 - *Calorie Tracking With Stats*
 
-Submitted by: **Hope de Jesus**
+Submitted by: **Hope De Jesus**
 
-**CalorieTracking** is a health metrics app that allows users to track the foods they eat and the calories they consume
+**Calorie Tracking With Stats** is a health metrics app that allows users to track ... [TODO] 
 
-Time spent: **12** hours spent in total
+Time spent: **8** hours spent in total
 
 ## Required Features
 
 The following **required** functionality is completed:
 
-- [x] **At least one health metric is tracked (based on user input)**
-  - Chosen metric(s): caloreis and food user consumes
-- [x] **There is a "create entry" UI that prompts users to make their daily entry**
-- [x] **New entries are saved in a database and then updated in the RecyclerView**
-- [x] **On application restart, previously entered entries are preserved (i.e., are *persistent*)**
- 
+- [x] **Use at least 2 Fragments**
+- [x] **Create a new dashboard fragment where users can see a summary of their entered data**
+- [x] **Use one of the Navigation UI Views (BottomNavigation, Drawer Layout, Top Bar) to move between the fragments**
+
 The following **optional** features are implemented:
 
-- [ ] **Create a UI for tracking averages and trends in metrics**
-- [x] **Improve and customize the user interface through styling and coloring**
-- [ ] **Implement orientation responsivity**
-- [ ] **Add a daily photo feature**
+- [ ] **Add a more advanced UI (e.g: Graphing) for tracking trends in metrics**
+- [ ] **Implement daily notifications to prompt users to fill in their data**
 
 The following **additional** features are implemented:
 
-- [ ] List anything else that you can get done to improve the app functionality!
-
+- [x] improved cell UI
 ## Video Walkthrough
 
-Here's a walkthrough of implemented user stories:[
-<img src='http://i.imgur.com/IQ3puKX.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+Here's a walkthrough of implemented user stories:
+
+<img src='http://i.imgur.com/5s8mXb0.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 <!-- Replace this with whatever GIF tool you used! -->
 GIF created with ...  
+<!-- Recommended tools:
+[Kap](https://getkap.co/) for macOS
 [ScreenToGif](https://www.screentogif.com/) for Windows
-
+[peek](https://github.com/phw/peek) for Linux. -->
 
 ## Notes
-
-I had a lot of trouble installing dependencies. Had to find alternative solutions that do not need the required dependencies.
+Using queries to create correct statistics
 
 ## License
 
-    Copyright [2023] [Hope]
+    Copyright [2023] [Hope de Jesus]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
