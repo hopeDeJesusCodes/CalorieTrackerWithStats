@@ -1,4 +1,4 @@
-package com.example.wishlist
+package com.example.caloriesCount
 
 import android.os.Bundle
 import android.text.Editable
@@ -6,30 +6,33 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import com.example.wishlist.databinding.FragmentNewItemSheetBinding
+import com.example.caloriesCount.databinding.FragmentNewItemSheetBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import java.time.LocalTime
 
-class NewItemSheet(var wishItem: WishItem?) : BottomSheetDialogFragment()
+class NewItemSheet(var foodItem: FoodItem?) : BottomSheetDialogFragment()
 {
     private lateinit var binding: FragmentNewItemSheetBinding
     private lateinit var itemViewModel: ItemViewModel
-    private var dueTime: LocalTime? = null
+    private var newItemListener: OnNewItemSubmittedListener? = null
+
+    interface OnNewItemSubmittedListener {
+        fun onNewItemSubmitted(newItem: FoodItem)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val activity = requireActivity()
 
-        if (wishItem != null)
+        if (foodItem != null)
         {
-            binding.itemTitle.text = "Edit Item"
+            binding.foodTitle.text = "Edit Item"
             val editable = Editable.Factory.getInstance()
-            binding.name.text = editable.newEditable(wishItem!!.name)
-            binding.price.text = editable.newEditable(wishItem!!.price)
+            binding.foodName.text = editable.newEditable(foodItem!!.foodName)
+            binding.calories.text = editable.newEditable(foodItem!!.calories)
         }
         else
         {
-            binding.itemTitle.text = "New Item"
+            binding.foodTitle.text = "Add Food"
         }
 
         itemViewModel = ViewModelProvider(activity).get(ItemViewModel::class.java)
@@ -44,22 +47,25 @@ class NewItemSheet(var wishItem: WishItem?) : BottomSheetDialogFragment()
     }
 
 
-    private fun saveAction()
-    {
-        val name = binding.name.text.toString()
-        val price = binding.price.text.toString()
-        if(wishItem == null)
-        {
-            val newItem = WishItem(completed = true, name = name, price = price)
+    private fun saveAction() {
+        val foodName = binding.foodName.text.toString()
+        val calories = binding.calories.text.toString()
+        if (foodItem == null) {
+            val newItem = FoodItem(foodName = foodName, calories = calories)
             itemViewModel.addWishItem(newItem)
         }
-        else
-        {
-            itemViewModel.updateWishItem(wishItem!!.id, name, price)
-        }
-        binding.name.setText("")
-        binding.price.setText("")
+        binding.foodName.setText("")
+        binding.calories.setText("")
         dismiss()
     }
 
+
+
+    fun setOnNewItemSubmittedListener(listener: OnNewItemSubmittedListener) {
+        newItemListener = listener
+    }
+
 }
+
+
+

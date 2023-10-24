@@ -1,4 +1,4 @@
-package com.example.wishlist
+package com.example.caloriesCount
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

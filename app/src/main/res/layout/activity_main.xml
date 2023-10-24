@@ -10,22 +10,21 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/itemListRecyclerView"
+        android:id="@+id/foodListRecyclerView"
         android:backgroundTint="@color/design_default_color_background"
         />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Item"
-        android:id="@+id/newItemButton"
+        android:text="Add Food"
+        android:id="@+id/newFoodButton"
         android:backgroundTint="?attr/colorPrimary"
         android:textColor="?colorOnPrimary"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:padding="5dp"
         android:layout_margin="20dp"
-        app:icon="@drawable/baseline_shopping_cart_24"
         app:iconTint="?colorOnPrimary"
         />
 

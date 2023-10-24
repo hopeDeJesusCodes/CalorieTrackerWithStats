@@ -1,4 +1,4 @@
-package com.example.wishlist
+package com.example.caloriesCount
 
 import org.junit.Test
 
