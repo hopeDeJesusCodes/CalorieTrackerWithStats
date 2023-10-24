@@ -28,7 +28,7 @@ class NewItemSheet(var foodItem: FoodItem?) : BottomSheetDialogFragment()
             binding.foodTitle.text = "Edit Item"
             val editable = Editable.Factory.getInstance()
             binding.foodName.text = editable.newEditable(foodItem!!.foodName)
-            binding.calories.text = editable.newEditable(foodItem!!.calories)
+            binding.calories.text = editable.newEditable(foodItem!!.calories.toString())
         }
         else
         {
@@ -49,20 +49,18 @@ class NewItemSheet(var foodItem: FoodItem?) : BottomSheetDialogFragment()
 
     private fun saveAction() {
         val foodName = binding.foodName.text.toString()
-        val calories = binding.calories.text.toString()
-        if (foodItem == null) {
-            val newItem = FoodItem(foodName = foodName, calories = calories)
-            itemViewModel.addWishItem(newItem)
+        val caloriesStr = binding.calories.text.toString()
+
+        if (foodName.isNotBlank() && caloriesStr.isNotBlank()) {
+            val calories = caloriesStr.toInt() // Parse the calories as an Int
+            if (foodItem == null) {
+                val newItem = FoodItem(foodName = foodName, calories = calories)
+                itemViewModel.addWishItem(newItem)
+            }
+            binding.foodName.setText("")
+            binding.calories.setText("")
+            dismiss()
         }
-        binding.foodName.setText("")
-        binding.calories.setText("")
-        dismiss()
-    }
-
-
-
-    fun setOnNewItemSubmittedListener(listener: OnNewItemSubmittedListener) {
-        newItemListener = listener
     }
 
 }

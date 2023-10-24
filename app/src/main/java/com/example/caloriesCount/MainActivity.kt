@@ -1,12 +1,15 @@
 package com.example.caloriesCount
 
+import StatsFragment
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.caloriesCount.databinding.ActivityMainBinding
 import androidx.lifecycle.observe
 import com.example.caloriesCount.data.FoodEntry
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -21,32 +24,42 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val articleApplication = application as FoodApplication
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.menu_stats -> setCurrentFragment(StatsFragment())
+                R.id.menu_foods -> setCurrentFragment(FoodFragment())
+            }
+            true
+        }
+
         itemViewModel = ViewModelProvider(this).get(ItemViewModel::class.java)
         binding.newFoodButton.setOnClickListener {
             NewItemSheet(null).show(supportFragmentManager, "newItemTag")
 
             // Perform database operations (for example, clearing and inserting data)
-            updateDatabase()
+            setCurrentFragment(FoodFragment())
+
         }
 
-        setRecyclerView()
     }
+
+    private fun setCurrentFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.container, fragment)
+            commit()
+        }
+    }
+
 
     // Function to perform database operations
     private fun updateDatabase() {
-        val newItem = FoodItem(foodName = "New Food Name", calories = "100")
-
         val foodEntryDao = (application as FoodApplication).db.foodEntryDao()
 
         // Perform database operations on a background thread
         GlobalScope.launch(Dispatchers.IO) {
             // Delete all entries from the database
             foodEntryDao.deleteAll()
-
-            // Insert new entries (if any)
-            val newItem = FoodItem(foodName = "New Food Name", calories = "100")
-            insertNewItemToDatabase(newItem)
         }
     }
 
@@ -59,13 +72,4 @@ class MainActivity : AppCompatActivity() {
         foodEntryDao.insertAll(listOf(foodEntry))
     }
 
-    private fun setRecyclerView() {
-        val mainActivity = this
-        itemViewModel.foodItemsLiveData.observe(this) { foodItems ->
-            binding.foodListRecyclerView.apply {
-                layoutManager = LinearLayoutManager(applicationContext)
-                adapter = FoodItemAdapter(foodItems, mainActivity)
-            }
-        }
-    }
 }

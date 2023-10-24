@@ -13,7 +13,7 @@ class FoodItemViewHolder(
     fun bindWishItem(foodItem: FoodItem)
     {
         binding.foodName.text = foodItem.foodName
-        binding.caloriesValue.text = foodItem.calories
+        binding.caloriesValue.text = foodItem.calories.toString()
 
     }
 }

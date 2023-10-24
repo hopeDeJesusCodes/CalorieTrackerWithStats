@@ -45,6 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/calories"
+            android:inputType="number"
             android:hint="Calories">
 
         </com.google.android.material.textfield.TextInputEditText>

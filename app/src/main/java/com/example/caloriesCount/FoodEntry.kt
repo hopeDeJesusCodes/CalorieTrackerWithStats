@@ -7,8 +7,7 @@ import java.util.UUID
 
 @Entity(tableName = "food_entries")
 data class FoodEntry(
-    @PrimaryKey(autoGenerate = true) val id: Long = 0,
+    @PrimaryKey(autoGenerate = true) val id: Long=0,
     @ColumnInfo(name = "foodName") val foodName: String?,
-    @ColumnInfo(name = "calories") val calories: String?,
+    @ColumnInfo(name = "calories") val calories: Int?,
 )
-
